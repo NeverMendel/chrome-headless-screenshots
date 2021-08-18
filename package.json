@@ -1,0 +1,19 @@
+{
+  "name": "chrome-headless-screenshots",
+  "version": "1.0.0",
+  "description": "Node.js script to take screenshots of webpages with Chrome headless and Puppeteer",
+  "main": "index.js",
+  "dependencies": {
+    "delay": "^5.0.0",
+    "fs": "0.0.1-security",
+    "path": "^0.12.7",
+    "puppeteer": "^10.2.0",
+    "yargs": "^17.1.1"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "start": "node index.js"
+  },
+  "author": "Davide Cazzin",
+  "license": "MIT"
+}
