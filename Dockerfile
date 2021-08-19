@@ -39,4 +39,8 @@ RUN yarn install
 # Create output directory
 RUN mkdir -p /usr/src/app/out
 
-ENTRYPOINT ["node", "index.js", "--outputDir=out", "--inputDir=out"]
+RUN chmod +x take-screenshot.sh
+
+ENV PATH="/usr/src/app:${PATH}"
+
+ENTRYPOINT ["take-screenshot.sh", "--outputDir=out", "--inputDir=out"]
