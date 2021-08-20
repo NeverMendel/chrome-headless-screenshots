@@ -27,7 +27,7 @@ docker build -t chrome-headless-screenshots .
 To take a screenshot with a Docker container run:
 
 ```
-docker run -it -v ${pwd}:/usr/src/app/out --rm nevermendel/chrome-headless-screenshots https://github.com
+docker run -it -v ${PWD}:/usr/src/app/out --rm nevermendel/chrome-headless-screenshots https://github.com
 ```
 
 ## Script usage
