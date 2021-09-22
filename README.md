@@ -52,7 +52,8 @@ Options:
       --cookies      Cookies in json format as string                                 [string] [default: ""]
       --cookiesFile  Path of the file containing the cookies                          [string] [default: ""]
       --delay        Delay before taking the screenshot in ms                          [number] [default: 0]
-      --format       Image format of the screenshot       [string] [choices: "png", "jpeg"] [default: "png"]
+      --format       Image format of the screenshot
+                                                  [string] [choices: "png", "jpeg", "webp"] [default: "png"]
 
 Examples:
   index.js https://github.com                             Take a screenshot of https://github.com and save
