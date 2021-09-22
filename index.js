@@ -65,7 +65,7 @@ let argv = yargs(process.argv.slice(2))
             .option('format', {
                 description: 'Image format of the screenshot',
                 type: 'string',
-                choices: ['png', 'jpeg'],
+                choices: ['png', 'jpeg', 'webp'],
                 demandOption: false,
                 default: 'png',
             })
