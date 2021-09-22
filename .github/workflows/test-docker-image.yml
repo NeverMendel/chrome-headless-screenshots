@@ -1,0 +1,57 @@
+name: Test Docker Image
+
+on:
+  push:
+    branches:
+      - '*'
+  pull_request:
+    branches:
+      - '*'
+
+jobs:
+  docker:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Build docker image
+        uses: docker/build-push-action@v2
+        with:
+          context: .
+          push: false
+          tags: chrome-headless-screenshots:latest
+
+      - name: Take screenshot of github webpage
+        working-directory: ./test
+        run: docker run -v ${PWD}:/usr/src/app/out --rm chrome-headless-screenshots --filename=github-screenshot https://github.com
+
+      - name: Take screenshot of test webpage
+        working-directory: ./test
+        run: docker run -v ${PWD}:/usr/src/app/out --rm chrome-headless-screenshots --filename=test-screenshot file:///usr/src/app/out/index.html
+
+      - name: Compare test screenshot
+        run: |
+            compare_result=$(compare -metric MSE test/test-screenshot.png test/screenshot.png /dev/null 2>&1)
+            if [[ "$compare_result" == "0 (0)" ]]; then
+              echo "Screenshots are equal"
+            else
+              echo "Screenshots are different. Difference detected: " $compare_result
+              exit 1
+            fi
+
+      - name: Upload github screenshot artifact
+        uses: actions/upload-artifact@v2
+        if: always()
+        with:
+          name: github-screenshot
+          path: ./test/github-screenshot.png
+          if-no-files-found: error
+
+      - name: Upload test screenshot artifact
+        uses: actions/upload-artifact@v2
+        if: always()
+        with:
+          name: test-screenshot
+          path: ./test/test-screenshot.png
+          if-no-files-found: error
