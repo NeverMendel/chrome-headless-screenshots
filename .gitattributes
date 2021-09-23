@@ -1,0 +1,26 @@
+* text=auto
+
+# Windows scripts
+*.{cmd,[cC][mM][dD]} text eol=crlf
+*.{bat,[bB][aA][tT]} text eol=crlf
+
+# Linux scripts
+*.sh text eol=lf
+
+# Images
+*.bmp  binary
+*.eps  binary
+*.gif  binary
+*.gifv binary
+*.ico  binary
+*.jng  binary
+*.jp2  binary
+*.jpg  binary
+*.jpeg binary
+*.jpx  binary
+*.jxr  binary
+*.pdf  binary
+*.png  binary
+*.webp binary
+
+*.html linguist-detectable=false
