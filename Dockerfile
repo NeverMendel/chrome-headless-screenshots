@@ -1,13 +1,5 @@
 FROM alpine:latest
 
-LABEL org.label-schema.schema-version="1.0"
-LABEL org.label-schema.description="Docker image to take screenshot of webpages with Chrome headless and Puppeteer"
-LABEL org.label-schema.name="nevermendel/chrome-headless-screenshots"
-LABEL org.label-schema.usage="https://github.com/NeverMendel/chrome-headless-screenshots/blob/master/README.md"
-LABEL org.label-schema.vcs-url="https://github.com/NeverMendel/chrome-headless-screenshots"
-LABEL org.label-schema.vendor="NeverMendel"
-LABEL org.label-schema.docker.cmd="docker run -it -v ${PWD}:/usr/src/app/out --rm nevermendel/chrome-headless-screenshots https://github.com"
-
 # Installs latest Chromium package.
 RUN apk add --no-cache \
       chromium \
