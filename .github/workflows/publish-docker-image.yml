@@ -2,8 +2,8 @@ name: Publish Docker Image
 
 on:
   workflow_run:
-    workflows: ["Test Docker Image"]
-    branches: '*'
+    workflows: 
+      - "Test Docker Image"
     types: 
       - completed
 
