@@ -3,7 +3,10 @@ name: Publish Docker Image
 on:
   workflow_run:
     workflows: 
-      - "Test Docker Image"
+      - Test Docker Image
+    branches: 
+      - latest
+      - develop
     types: 
       - completed
 
