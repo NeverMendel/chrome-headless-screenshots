@@ -1,4 +1,4 @@
-FROM alpine:latest
+FROM alpine:3.13
 
 # Installs latest Chromium package.
 RUN apk add --no-cache \
@@ -26,7 +26,8 @@ RUN yarn install
 RUN mkdir -p /usr/src/app/out
 
 RUN chmod +x take-screenshot.sh
+RUN chmod +x entrypoint.sh
 
 ENV PATH="/usr/src/app:${PATH}"
 
-ENTRYPOINT ["node", "index.js", "--outputDir=out", "--inputDir=out"]
+ENTRYPOINT ["entrypoint.sh"]
