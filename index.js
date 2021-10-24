@@ -87,60 +87,63 @@ let argv = yargs(process.argv.slice(2))
     .alias('h', 'help')
     .version()
     .alias('version', 'v')
-    .wrap(Math.min(yargs.terminalWidth(), 130))
-    .argv;
+    .wrap(Math.min(yargs.terminalWidth(), 130)).argv;
 
-(async () => {
-    const browser = await puppeteer.launch({
-        defaultViewport: {
-            width: argv.width,
-            height: argv.height,
-        },
-        bindAddress: '0.0.0.0',
-        args: [
-            '--no-sandbox',
-            '--headless',
-            '--disable-gpu',
-            '--disable-dev-shm-usage',
-            '--remote-debugging-port=9222',
-            '--remote-debugging-address=0.0.0.0',
-        ],
-    });
+takeScreenshot(argv);
 
-    const page = await browser.newPage();
+function takeScreenshot(argv) {
+    (async () => {
+        const browser = await puppeteer.launch({
+            defaultViewport: {
+                width: argv.width,
+                height: argv.height,
+            },
+            bindAddress: '0.0.0.0',
+            args: [
+                '--no-sandbox',
+                '--headless',
+                '--disable-gpu',
+                '--disable-dev-shm-usage',
+                '--remote-debugging-port=9222',
+                '--remote-debugging-address=0.0.0.0',
+            ],
+        });
 
-    if (argv.userAgent) await page.setUserAgent(argv.userAgent);
+        const page = await browser.newPage();
 
-    if (argv.cookies) {
-        let cookies = JSON.parse(argv.cookies);
-        if (Array.isArray(cookies)) {
-            await page.setCookie(...cookies);
-        } else {
-            await page.setCookie(cookies);
+        if (argv.userAgent) await page.setUserAgent(argv.userAgent);
+
+        if (argv.cookies) {
+            let cookies = JSON.parse(argv.cookies);
+            if (Array.isArray(cookies)) {
+                await page.setCookie(...cookies);
+            } else {
+                await page.setCookie(cookies);
+            }
         }
-    }
 
-    if (argv.cookiesFile) {
-        let cookies = JSON.parse(
-            fs.readFileSync(path.join(argv.inputDir, argv.cookiesFile))
-        );
-        if (Array.isArray(cookies)) {
-            await page.setCookie(...cookies);
-        } else {
-            await page.setCookie(cookies);
+        if (argv.cookiesFile) {
+            let cookies = JSON.parse(
+                fs.readFileSync(path.join(argv.inputDir, argv.cookiesFile))
+            );
+            if (Array.isArray(cookies)) {
+                await page.setCookie(...cookies);
+            } else {
+                await page.setCookie(cookies);
+            }
         }
-    }
 
-    await page.goto(argv.url);
+        await page.goto(argv.url);
 
-    if (argv.delay) await delay(argv.delay);
+        if (argv.delay) await delay(argv.delay);
 
-    await page.screenshot({
-        path: path
-            .join(argv.outputDir, argv.filename + '.' + argv.format)
-            .toString(),
-        type: argv.format,
-    });
+        await page.screenshot({
+            path: path
+                .join(argv.outputDir, argv.filename + '.' + argv.format)
+                .toString(),
+            type: argv.format,
+        });
 
-    await browser.close();
-})();
+        await browser.close();
+    })();
+}

@@ -24,12 +24,12 @@ jobs:
           push: false
           tags: nevermendel/chrome-headless-screenshots
 
-      # - name: Run test-script.sh
-      #   run: |
-      #     cp -r test test-script
-      #     cd test-script
-      #     docker run -v ${PWD}:/usr/src/app/out --entrypoint=/bin/sh --rm nevermendel/chrome-headless-screenshots
-      #     ./compare-result.sh
+      - name: Run test-script.sh
+        run: |
+          cp -r test test-script
+          cd test-script
+          docker run -v $(pwd):/usr/src/app/out --entrypoint=/bin/sh --rm nevermendel/chrome-headless-screenshots ./out/test-script.sh
+          ./compare-result.sh
 
       - name: Run test-docker-image.sh
         run: | 
@@ -38,13 +38,13 @@ jobs:
           ./test-docker-image.sh
           ./compare-result.sh
 
-      # - name: Upload test-script artifacts
-      #   uses: actions/upload-artifact@v2
-      #   if: always()
-      #   with:
-      #     name: script-screenshots
-      #     path: ./test-script/*-screenshot.png
-      #     if-no-files-found: error
+      - name: Upload test-script artifacts
+        uses: actions/upload-artifact@v2
+        if: always()
+        with:
+          name: script-screenshots
+          path: ./test-script/*-screenshot.png
+          if-no-files-found: error
 
       - name: Upload test-docker-image artifacts
         uses: actions/upload-artifact@v2
