@@ -16,7 +16,7 @@ node index.js https://github.com
 
 ### Docker
 
-You can either build your own Docker image or you can use the pre-build one `nevermendel/chrome-headless-screenshots`
+You can either build your own Docker image or you can use the pre-built one `nevermendel/chrome-headless-screenshots` or `ghcr.io/nevermendel/docker-texlive-xetex`
 
 Build the Docker image:
 
@@ -29,6 +29,14 @@ To take a screenshot with a Docker container run:
 ```
 docker run -it -v $(pwd):/usr/src/app/out --rm nevermendel/chrome-headless-screenshots https://github.com
 ```
+
+To use the image iteratively, change the entry point to /bin/sh:
+
+```
+docker run -it --entrypoint=/bin/sh -v $(pwd):/usr/src/app/out --rm nevermendel/chrome-headless-screenshots
+```
+
+When using the image iteratively you can run `take-screenshot.sh` from anywhere to call the `index.js` script. 
 
 ## Script usage
 
