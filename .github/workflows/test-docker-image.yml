@@ -12,6 +12,7 @@ on:
 
 jobs:
   test-image:
+    name: Test Docker Image
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
