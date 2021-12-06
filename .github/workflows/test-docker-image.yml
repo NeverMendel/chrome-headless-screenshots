@@ -29,14 +29,14 @@ jobs:
           cp -r test test-script
           cd test-script
           docker run -v $(pwd):/usr/src/app/out --entrypoint=/bin/sh --rm nevermendel/chrome-headless-screenshots ./out/test-script.sh
-          ./compare-result.sh
+          ./compare-images.sh screenshot.png test-screenshot.png
 
       - name: Run test-docker-image.sh
         run: | 
           cp -r test test-docker-image
           cd test-docker-image
           ./test-docker-image.sh
-          ./compare-result.sh
+          ./compare-images.sh screenshot.png test-screenshot.png
 
       - name: Upload test-script artifacts
         uses: actions/upload-artifact@v2
