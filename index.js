@@ -104,6 +104,7 @@ function takeScreenshot(argv) {
                 '--headless',
                 '--disable-gpu',
                 '--disable-dev-shm-usage',
+                '--ignore-certificate-errors',
                 '--remote-debugging-port=9222',
                 '--remote-debugging-address=0.0.0.0',
             ],
@@ -132,8 +133,11 @@ function takeScreenshot(argv) {
                 await page.setCookie(cookies);
             }
         }
-
-        await page.goto(argv.url);
+        
+        try{
+            await page.goto(argv.url, { waitUntil: 'networkidle0' });
+        }
+        catch(err){}
 
         if (argv.delay) await delay(argv.delay);
 
