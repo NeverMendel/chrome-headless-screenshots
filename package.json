@@ -7,7 +7,7 @@
     "delay": "^5.0.0",
     "fs": "0.0.1-security",
     "path": "^0.12.7",
-    "puppeteer": "^16.2.0",
+    "puppeteer": "^17.0.0",
     "yargs": "^17.5.1"
   },
   "devDependencies": {},
