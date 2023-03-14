@@ -36,7 +36,7 @@ To use the image iteratively, change the entry point to /bin/sh:
 docker run -it --entrypoint=/bin/sh -v $(pwd):/usr/src/app/out --rm nevermendel/chrome-headless-screenshots
 ```
 
-When using the image iteratively you can run `take-screenshot.sh` from anywhere to call the `index.js` script. 
+When using the image iteratively you can run `take-screenshot.sh` from anywhere to call the `index.js` script.
 
 ## Script usage
 
