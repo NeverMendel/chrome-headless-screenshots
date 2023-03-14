@@ -33,7 +33,7 @@ jobs:
           ./compare-images.sh screenshot.png test-screenshot.png
 
       - name: Run test-docker-image.sh
-        run: | 
+        run: |
           cp -r test test-docker-image
           cd test-docker-image
           ./test-docker-image.sh
