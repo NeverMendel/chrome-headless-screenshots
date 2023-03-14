@@ -1,0 +1,17 @@
+name: Check Code Formatting
+
+on: [push, pull_request]
+
+jobs:
+  check-code-formatting-with-prettier:
+    name: Check Code Formatting With Prettier
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Install prettier
+        run: npm install --save-dev --save-exact prettier
+
+      - name: Check code formatting
+        run: npx prettier --check .
