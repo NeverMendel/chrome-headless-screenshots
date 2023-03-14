@@ -1,6 +1,6 @@
 {
   "name": "chrome-headless-screenshots",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "description": "Node.js script to take screenshots of webpages with Chrome headless and Puppeteer",
   "main": "index.js",
   "dependencies": {
