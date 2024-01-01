@@ -41,7 +41,7 @@ jobs:
           ./compare-images.sh screenshot.png test-screenshot.png
 
       - name: Upload test-script artifacts
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         if: always()
         with:
           name: script-screenshots
@@ -49,7 +49,7 @@ jobs:
           if-no-files-found: error
 
       - name: Upload test-docker-image artifacts
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         if: always()
         with:
           name: docker-screenshots
