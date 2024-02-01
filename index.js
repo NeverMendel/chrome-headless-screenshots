@@ -6,8 +6,8 @@ import path from 'path';
 
 const yargs = _yargs;
 
-const maxYargsWidth = 130
-const yargsWidth = Math.min(yargs.terminalWidth, maxYargsWidth)
+const maxYargsWidth = 130;
+const yargsWidth = Math.min(yargs.terminalWidth, maxYargsWidth);
 
 let argv = yargs(process.argv.slice(2))
   .detectLocale(false)
@@ -103,7 +103,7 @@ function takeScreenshot(argv) {
         height: argv.height,
       },
       bindAddress: '0.0.0.0',
-      headless: "new",
+      headless: 'new',
       args: [
         '--no-sandbox',
         '--headless',
