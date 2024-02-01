@@ -15,8 +15,8 @@ compare_result=$(sed 's|e+|*10^|g' <<< $compare_result)
 different=$(echo "$compare_result <= $maximum_difference" | bc -l)
 
 if [[ $different = 1 ]]; then
-    echo "No difference found! Different pixels in 1920x1080 image is $compare_result and threshold is $threshold difference ($maximum_difference pixels)."
+    echo "No difference found! In the 1920x1080 screenshot there are $compare_result different pixels, threshold is $maximum_difference pixels."
 else
-    echo "Difference detected. Different pixels in 1920x1080 image is $compare_result and threshold is $threshold difference ($maximum_difference pixels)."
+    echo "Difference detected. In the 1920x1080 screenshot there are $compare_result different pixels, threshold is $maximum_difference pixels."
     exit 1
 fi
