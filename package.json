@@ -5,7 +5,7 @@
   "main": "index.js",
   "type": "module",
   "dependencies": {
-    "delay": "^5.0.0",
+    "delay": "^6.0.0",
     "fs": "0.0.1-security",
     "path": "^0.12.7",
     "puppeteer": "^21.10.0",
