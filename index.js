@@ -1,13 +1,18 @@
-const puppeteer = require('puppeteer');
-var yargs = require('yargs');
-const delay = require('delay');
-const fs = require('fs');
-const path = require('path');
+import puppeteer from 'puppeteer';
+import _yargs from 'yargs';
+import delay from 'delay';
+import fs from 'fs';
+import path from 'path';
+
+const yargs = _yargs;
+
+const maxYargsWidth = 130
+const yargsWidth = Math.min(yargs.terminalWidth, maxYargsWidth)
 
 let argv = yargs(process.argv.slice(2))
   .detectLocale(false)
-  .usage('$0 [options] <url>', 'Take a screenshot of a webpage', (yargs) => {
-    yargs
+  .usage('$0 [options] <url>', 'Take a screenshot of a webpage', (args) => {
+    args
       .option('width', {
         description: 'Viewport width',
         type: 'number',
@@ -79,14 +84,14 @@ let argv = yargs(process.argv.slice(2))
       )
       .example(
         '$0 --cookiesFile=cookies.json https://google.com',
-        'Load the cookies from cookies.json, take a screenshot of https://google.com and save it as screenshot.png'
+        'Load cookies from cookies.json, take a screenshot of https://google.com and save it as screenshot.png'
       );
   })
   .help('h')
   .alias('h', 'help')
   .version()
   .alias('version', 'v')
-  .wrap(Math.min(yargs.terminalWidth(), 130)).argv;
+  .wrap(yargsWidth).argv;
 
 takeScreenshot(argv);
 
@@ -98,6 +103,7 @@ function takeScreenshot(argv) {
         height: argv.height,
       },
       bindAddress: '0.0.0.0',
+      headless: "new",
       args: [
         '--no-sandbox',
         '--headless',
