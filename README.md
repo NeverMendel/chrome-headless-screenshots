@@ -2,6 +2,8 @@
 
 Node.js script and Docker image to take screenshots of webpages with Chrome headless and [Puppeteer](https://github.com/puppeteer/puppeteer).
 
+If you find chrome-headless-screenshots helpful, please consider giving it a star ⭐️. Your support helps me gauge its usage and motivates further development.
+
 Pull requests are welcome.
 
 ## How to use it
