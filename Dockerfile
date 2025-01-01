@@ -1,4 +1,4 @@
-FROM alpine:3.20.3
+FROM alpine:3.21.0
 
 # Installs latest Chromium package.
 RUN apk add --no-cache \
